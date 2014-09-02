@@ -1,0 +1,57 @@
+﻿@model CO2Neutral_MVC.Models.Calculadora
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Calculadora</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Usuario.contrasenna)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuario.contrasenna)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCalculdora)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCalculdora)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoTransporte)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoTransporte)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoElectricidad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoElectricidad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoReciclaje)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoReciclaje)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoGas)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoGas)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.idCalculdora  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,36 @@
+﻿@model CO2Neutral_MVC.Models.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Usuario</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idUsuario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idUsuario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.contrasenna)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contrasenna)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.idUsuario/ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

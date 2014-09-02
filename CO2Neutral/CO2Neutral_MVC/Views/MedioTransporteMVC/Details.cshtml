@@ -1,0 +1,50 @@
+﻿@model CO2Neutral_MVC.Models.MedioTransporte
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>MedioTransporte</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Calculadora.idCalculdora)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Calculadora.idCalculdora)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.listaFrecuencias.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.listaFrecuencias.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.kilometraje)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.kilometraje)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cantidadVeces)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cantidadVeces)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.listaMedios.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.listaMedios.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { idCalculadora = Model.idCalculdora, idMedios = Model.idMedios }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,76 @@
+﻿@model CO2Neutral_MVC.Models.EstadisticaTransporte
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>EstadisticaTransporte</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.kilometraje)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.kilometraje)
+            @Html.ValidationMessageFor(model => model.kilometraje)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cantidadVeces)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cantidadVeces)
+            @Html.ValidationMessageFor(model => model.cantidadVeces)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idMedios)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idMedios)
+            @Html.ValidationMessageFor(model => model.idMedios)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idFrecuencias)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idFrecuencias)
+            @Html.ValidationMessageFor(model => model.idFrecuencias)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idCalculadora)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idCalculadora)
+            @Html.ValidationMessageFor(model => model.idCalculadora)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idMedioTransporte)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idMedioTransporte)
+            @Html.ValidationMessageFor(model => model.idMedioTransporte)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CO2Neutral_MVC.Models.CentroAcopio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idCentroAcopio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.latitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.longuitud)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCentroAcopio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.latitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.longuitud)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.idCentroAcopio  }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idCentroAcopio }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idCentroAcopio })
+        </td>
+    </tr>
+}
+
+</table>

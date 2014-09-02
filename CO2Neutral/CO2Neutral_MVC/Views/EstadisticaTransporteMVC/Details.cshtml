@@ -1,0 +1,57 @@
+﻿@model CO2Neutral_MVC.Models.EstadisticaTransporte
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>EstadisticaTransporte</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.kilometraje)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.kilometraje)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cantidadVeces)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cantidadVeces)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idMedios)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idMedios)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idFrecuencias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idFrecuencias)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCalculadora)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCalculadora)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idMedioTransporte)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idMedioTransporte)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.idMedioTransporte }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

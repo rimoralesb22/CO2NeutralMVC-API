@@ -1,0 +1,64 @@
+﻿@model CO2Neutral_MVC.Models.CentroAcopio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CentroAcopio</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCentroAcopio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCentroAcopio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.latitud)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.latitud)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.longuitud)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.longuitud)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.idCentroAcopio  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

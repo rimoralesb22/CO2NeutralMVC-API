@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CO2Neutral_MVC.Models.EstadisticaTransporte>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.kilometraje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidadVeces)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idMedios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idFrecuencias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idCalculadora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idMedioTransporte)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.kilometraje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidadVeces)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idMedios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idFrecuencias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCalculadora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idMedioTransporte)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.idMedioTransporte  }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idMedioTransporte }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idMedioTransporte })
+        </td>
+    </tr>
+}
+
+</table>

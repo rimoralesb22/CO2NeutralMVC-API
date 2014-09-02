@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Calculadora">
+          <Key>
+            <PropertyRef Name="idCalculdora" />
+          </Key>
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idCalculdora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resultadoTransporte" Type="int" />
+          <Property Name="resultadoElectricidad" Type="int" />
+          <Property Name="resultadoReciclaje" Type="int" />
+          <Property Name="resultadoGas" Type="int" />
+        </EntityType>
+        <EntityType Name="CategoriaRecomendacion">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CentroAcopio">
+          <Key>
+            <PropertyRef Name="idCentroAcopio" />
+          </Key>
+          <Property Name="idCentroAcopio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="latitud" Type="float" />
+          <Property Name="longuitud" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BD_Test.dbo.EstadisticaTransporte' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EstadisticaTransporte">
+          <Key>
+            <PropertyRef Name="idMedios" />
+            <PropertyRef Name="idFrecuencias" />
+          </Key>
+          <Property Name="kilometraje" Type="int" />
+          <Property Name="cantidadVeces" Type="int" />
+          <Property Name="idMedios" Type="int" Nullable="false" />
+          <Property Name="idFrecuencias" Type="int" Nullable="false" />
+          <Property Name="idCalculadora" Type="int" />
+          <Property Name="idMedioTransporte" Type="int" />
+        </EntityType>
+        <EntityType Name="listaFrecuencias">
+          <Key>
+            <PropertyRef Name="idFrecuencias" />
+          </Key>
+          <Property Name="idFrecuencias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="valor" Type="int" />
+        </EntityType>
+        <EntityType Name="listaMedios">
+          <Key>
+            <PropertyRef Name="idMedios" />
+          </Key>
+          <Property Name="idMedios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="valor" Type="float" />
+        </EntityType>
+        <EntityType Name="MedioTransporte">
+          <Key>
+            <PropertyRef Name="idCalculdora" />
+            <PropertyRef Name="idMedios" />
+          </Key>
+          <Property Name="idCalculdora" Type="int" Nullable="false" />
+          <Property Name="idFrecuencias" Type="int" Nullable="false" />
+          <Property Name="kilometraje" Type="int" />
+          <Property Name="cantidadVeces" Type="int" />
+          <Property Name="idMedios" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Recomendacion">
+          <Key>
+            <PropertyRef Name="idRecomendacion" />
+          </Key>
+          <Property Name="idRecomendacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="contrasenna" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="Calculadora_Usuario_FK">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Calculadora" Type="Self.Calculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Calculadora">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedioTransporte_FK1">
+          <End Role="listaMedios" Type="Self.listaMedios" Multiplicity="1" />
+          <End Role="MedioTransporte" Type="Self.MedioTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="listaMedios">
+              <PropertyRef Name="idMedios" />
+            </Principal>
+            <Dependent Role="MedioTransporte">
+              <PropertyRef Name="idMedios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedioTransporte_FK2">
+          <End Role="Calculadora" Type="Self.Calculadora" Multiplicity="1" />
+          <End Role="MedioTransporte" Type="Self.MedioTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calculadora">
+              <PropertyRef Name="idCalculdora" />
+            </Principal>
+            <Dependent Role="MedioTransporte">
+              <PropertyRef Name="idCalculdora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedioTransporte_FK3">
+          <End Role="listaFrecuencias" Type="Self.listaFrecuencias" Multiplicity="1" />
+          <End Role="MedioTransporte" Type="Self.MedioTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="listaFrecuencias">
+              <PropertyRef Name="idFrecuencias" />
+            </Principal>
+            <Dependent Role="MedioTransporte">
+              <PropertyRef Name="idFrecuencias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Recomendacion_FK1">
+          <End Role="CategoriaRecomendacion" Type="Self.CategoriaRecomendacion" Multiplicity="1" />
+          <End Role="Recomendacion" Type="Self.Recomendacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaRecomendacion">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Recomendacion">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_TestModelStoreContainer">
+          <EntitySet Name="Calculadora" EntityType="Self.Calculadora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoriaRecomendacion" EntityType="Self.CategoriaRecomendacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CentroAcopio" EntityType="Self.CentroAcopio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="listaFrecuencias" EntityType="Self.listaFrecuencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="listaMedios" EntityType="Self.listaMedios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedioTransporte" EntityType="Self.MedioTransporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recomendacion" EntityType="Self.Recomendacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadisticaTransporte" EntityType="Self.EstadisticaTransporte" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[EstadisticaTransporte].[kilometraje] AS [kilometraje], 
+[EstadisticaTransporte].[cantidadVeces] AS [cantidadVeces], 
+[EstadisticaTransporte].[idMedios] AS [idMedios], 
+[EstadisticaTransporte].[idFrecuencias] AS [idFrecuencias], 
+[EstadisticaTransporte].[idCalculadora] AS [idCalculadora], 
+[EstadisticaTransporte].[idMedioTransporte] AS [idMedioTransporte]
+FROM [dbo].[EstadisticaTransporte] AS [EstadisticaTransporte]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Calculadora_Usuario_FK" Association="Self.Calculadora_Usuario_FK">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calculadora" EntitySet="Calculadora" />
+          </AssociationSet>
+          <AssociationSet Name="MedioTransporte_FK1" Association="Self.MedioTransporte_FK1">
+            <End Role="listaMedios" EntitySet="listaMedios" />
+            <End Role="MedioTransporte" EntitySet="MedioTransporte" />
+          </AssociationSet>
+          <AssociationSet Name="MedioTransporte_FK2" Association="Self.MedioTransporte_FK2">
+            <End Role="Calculadora" EntitySet="Calculadora" />
+            <End Role="MedioTransporte" EntitySet="MedioTransporte" />
+          </AssociationSet>
+          <AssociationSet Name="MedioTransporte_FK3" Association="Self.MedioTransporte_FK3">
+            <End Role="listaFrecuencias" EntitySet="listaFrecuencias" />
+            <End Role="MedioTransporte" EntitySet="MedioTransporte" />
+          </AssociationSet>
+          <AssociationSet Name="Recomendacion_FK1" Association="Self.Recomendacion_FK1">
+            <End Role="CategoriaRecomendacion" EntitySet="CategoriaRecomendacion" />
+            <End Role="Recomendacion" EntitySet="Recomendacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Calculadora">
+          <Key>
+            <PropertyRef Name="idCalculdora" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idCalculdora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resultadoTransporte" Type="Int32" />
+          <Property Name="resultadoElectricidad" Type="Int32" />
+          <Property Name="resultadoReciclaje" Type="Int32" />
+          <Property Name="resultadoGas" Type="Int32" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Calculadora_Usuario_FK" FromRole="Calculadora" ToRole="Usuario" />
+          <NavigationProperty Name="MedioTransporte" Relationship="Self.MedioTransporte_FK2" FromRole="Calculadora" ToRole="MedioTransporte" />
+        </EntityType>
+        <EntityType Name="CategoriaRecomendacion">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Recomendacion" Relationship="Self.Recomendacion_FK1" FromRole="CategoriaRecomendacion" ToRole="Recomendacion" />
+        </EntityType>
+        <EntityType Name="CentroAcopio">
+          <Key>
+            <PropertyRef Name="idCentroAcopio" />
+          </Key>
+          <Property Name="idCentroAcopio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="latitud" Type="Double" />
+          <Property Name="longuitud" Type="Double" />
+        </EntityType>
+        <EntityType Name="listaFrecuencias">
+          <Key>
+            <PropertyRef Name="idFrecuencias" />
+          </Key>
+          <Property Name="idFrecuencias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="Int32" />
+          <NavigationProperty Name="MedioTransporte" Relationship="Self.MedioTransporte_FK3" FromRole="listaFrecuencias" ToRole="MedioTransporte" />
+        </EntityType>
+        <EntityType Name="listaMedios">
+          <Key>
+            <PropertyRef Name="idMedios" />
+          </Key>
+          <Property Name="idMedios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="Double" />
+          <NavigationProperty Name="MedioTransporte" Relationship="Self.MedioTransporte_FK1" FromRole="listaMedios" ToRole="MedioTransporte" />
+        </EntityType>
+        <EntityType Name="MedioTransporte">
+          <Key>
+            <PropertyRef Name="idCalculdora" />
+            <PropertyRef Name="idMedios" />
+          </Key>
+          <Property Name="idCalculdora" Type="Int32" Nullable="false" />
+          <Property Name="idFrecuencias" Type="Int32" Nullable="false" />
+          <Property Name="kilometraje" Type="Int32" />
+          <Property Name="cantidadVeces" Type="Int32" />
+          <Property Name="idMedios" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Calculadora" Relationship="Self.MedioTransporte_FK2" FromRole="MedioTransporte" ToRole="Calculadora" />
+          <NavigationProperty Name="listaFrecuencias" Relationship="Self.MedioTransporte_FK3" FromRole="MedioTransporte" ToRole="listaFrecuencias" />
+          <NavigationProperty Name="listaMedios" Relationship="Self.MedioTransporte_FK1" FromRole="MedioTransporte" ToRole="listaMedios" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Recomendacion">
+          <Key>
+            <PropertyRef Name="idRecomendacion" />
+          </Key>
+          <Property Name="idRecomendacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategoriaRecomendacion" Relationship="Self.Recomendacion_FK1" FromRole="Recomendacion" ToRole="CategoriaRecomendacion" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="contrasenna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Calculadora" Relationship="Self.Calculadora_Usuario_FK" FromRole="Usuario" ToRole="Calculadora" />
+        </EntityType>
+        <EntityType Name="EstadisticaTransporte">
+          <Key>
+            <PropertyRef Name="idMedios" />
+            <PropertyRef Name="idFrecuencias" />
+          </Key>
+          <Property Name="kilometraje" Type="Int32" />
+          <Property Name="cantidadVeces" Type="Int32" />
+          <Property Name="idMedios" Type="Int32" Nullable="false" />
+          <Property Name="idFrecuencias" Type="Int32" Nullable="false" />
+          <Property Name="idCalculadora" Type="Int32" />
+          <Property Name="idMedioTransporte" Type="Int32" />
+        </EntityType>
+        <Association Name="Calculadora_Usuario_FK">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Calculadora" Type="Self.Calculadora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Calculadora">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedioTransporte_FK2">
+          <End Role="Calculadora" Type="Self.Calculadora" Multiplicity="1" />
+          <End Role="MedioTransporte" Type="Self.MedioTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calculadora">
+              <PropertyRef Name="idCalculdora" />
+            </Principal>
+            <Dependent Role="MedioTransporte">
+              <PropertyRef Name="idCalculdora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Recomendacion_FK1">
+          <End Role="CategoriaRecomendacion" Type="Self.CategoriaRecomendacion" Multiplicity="1" />
+          <End Role="Recomendacion" Type="Self.Recomendacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriaRecomendacion">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Recomendacion">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedioTransporte_FK3">
+          <End Role="listaFrecuencias" Type="Self.listaFrecuencias" Multiplicity="1" />
+          <End Role="MedioTransporte" Type="Self.MedioTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="listaFrecuencias">
+              <PropertyRef Name="idFrecuencias" />
+            </Principal>
+            <Dependent Role="MedioTransporte">
+              <PropertyRef Name="idFrecuencias" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedioTransporte_FK1">
+          <End Role="listaMedios" Type="Self.listaMedios" Multiplicity="1" />
+          <End Role="MedioTransporte" Type="Self.MedioTransporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="listaMedios">
+              <PropertyRef Name="idMedios" />
+            </Principal>
+            <Dependent Role="MedioTransporte">
+              <PropertyRef Name="idMedios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calculadora" EntityType="Self.Calculadora" />
+          <EntitySet Name="CategoriaRecomendacion" EntityType="Self.CategoriaRecomendacion" />
+          <EntitySet Name="CentroAcopio" EntityType="Self.CentroAcopio" />
+          <EntitySet Name="listaFrecuencias" EntityType="Self.listaFrecuencias" />
+          <EntitySet Name="listaMedios" EntityType="Self.listaMedios" />
+          <EntitySet Name="MedioTransporte" EntityType="Self.MedioTransporte" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Recomendacion" EntityType="Self.Recomendacion" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="EstadisticaTransporte" EntityType="Self.EstadisticaTransporte" />
+          <AssociationSet Name="Calculadora_Usuario_FK" Association="Self.Calculadora_Usuario_FK">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Calculadora" EntitySet="Calculadora" />
+          </AssociationSet>
+          <AssociationSet Name="MedioTransporte_FK2" Association="Self.MedioTransporte_FK2">
+            <End Role="Calculadora" EntitySet="Calculadora" />
+            <End Role="MedioTransporte" EntitySet="MedioTransporte" />
+          </AssociationSet>
+          <AssociationSet Name="Recomendacion_FK1" Association="Self.Recomendacion_FK1">
+            <End Role="CategoriaRecomendacion" EntitySet="CategoriaRecomendacion" />
+            <End Role="Recomendacion" EntitySet="Recomendacion" />
+          </AssociationSet>
+          <AssociationSet Name="MedioTransporte_FK3" Association="Self.MedioTransporte_FK3">
+            <End Role="listaFrecuencias" EntitySet="listaFrecuencias" />
+            <End Role="MedioTransporte" EntitySet="MedioTransporte" />
+          </AssociationSet>
+          <AssociationSet Name="MedioTransporte_FK1" Association="Self.MedioTransporte_FK1">
+            <End Role="listaMedios" EntitySet="listaMedios" />
+            <End Role="MedioTransporte" EntitySet="MedioTransporte" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_TestModelStoreContainer" CdmEntityContainer="BD_TestEntities">
+          <EntitySetMapping Name="Calculadora">
+            <EntityTypeMapping TypeName="BD_TestModel.Calculadora">
+              <MappingFragment StoreEntitySet="Calculadora">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idCalculdora" ColumnName="idCalculdora" />
+                <ScalarProperty Name="resultadoTransporte" ColumnName="resultadoTransporte" />
+                <ScalarProperty Name="resultadoElectricidad" ColumnName="resultadoElectricidad" />
+                <ScalarProperty Name="resultadoReciclaje" ColumnName="resultadoReciclaje" />
+                <ScalarProperty Name="resultadoGas" ColumnName="resultadoGas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriaRecomendacion">
+            <EntityTypeMapping TypeName="BD_TestModel.CategoriaRecomendacion">
+              <MappingFragment StoreEntitySet="CategoriaRecomendacion">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CentroAcopio">
+            <EntityTypeMapping TypeName="BD_TestModel.CentroAcopio">
+              <MappingFragment StoreEntitySet="CentroAcopio">
+                <ScalarProperty Name="idCentroAcopio" ColumnName="idCentroAcopio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longuitud" ColumnName="longuitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="listaFrecuencias">
+            <EntityTypeMapping TypeName="BD_TestModel.listaFrecuencias">
+              <MappingFragment StoreEntitySet="listaFrecuencias">
+                <ScalarProperty Name="idFrecuencias" ColumnName="idFrecuencias" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="listaMedios">
+            <EntityTypeMapping TypeName="BD_TestModel.listaMedios">
+              <MappingFragment StoreEntitySet="listaMedios">
+                <ScalarProperty Name="idMedios" ColumnName="idMedios" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedioTransporte">
+            <EntityTypeMapping TypeName="BD_TestModel.MedioTransporte">
+              <MappingFragment StoreEntitySet="MedioTransporte">
+                <ScalarProperty Name="idCalculdora" ColumnName="idCalculdora" />
+                <ScalarProperty Name="idFrecuencias" ColumnName="idFrecuencias" />
+                <ScalarProperty Name="kilometraje" ColumnName="kilometraje" />
+                <ScalarProperty Name="cantidadVeces" ColumnName="cantidadVeces" />
+                <ScalarProperty Name="idMedios" ColumnName="idMedios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="BD_TestModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recomendacion">
+            <EntityTypeMapping TypeName="BD_TestModel.Recomendacion">
+              <MappingFragment StoreEntitySet="Recomendacion">
+                <ScalarProperty Name="idRecomendacion" ColumnName="idRecomendacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="BD_TestModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadisticaTransporte">
+            <EntityTypeMapping TypeName="BD_TestModel.EstadisticaTransporte">
+              <MappingFragment StoreEntitySet="EstadisticaTransporte">
+                <ScalarProperty Name="kilometraje" ColumnName="kilometraje" />
+                <ScalarProperty Name="cantidadVeces" ColumnName="cantidadVeces" />
+                <ScalarProperty Name="idMedios" ColumnName="idMedios" />
+                <ScalarProperty Name="idFrecuencias" ColumnName="idFrecuencias" />
+                <ScalarProperty Name="idCalculadora" ColumnName="idCalculadora" />
+                <ScalarProperty Name="idMedioTransporte" ColumnName="idMedioTransporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

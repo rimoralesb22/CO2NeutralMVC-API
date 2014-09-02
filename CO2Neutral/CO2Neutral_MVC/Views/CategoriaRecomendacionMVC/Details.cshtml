@@ -1,0 +1,29 @@
+﻿@model CO2Neutral_MVC.Models.CategoriaRecomendacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CategoriaRecomendacion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCategoria)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCategoria)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.idCategoria }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

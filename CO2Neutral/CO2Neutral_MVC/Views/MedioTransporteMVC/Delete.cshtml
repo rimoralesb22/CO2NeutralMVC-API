@@ -1,0 +1,54 @@
+﻿@model CO2Neutral_MVC.Models.MedioTransporte
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>MedioTransporte</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Calculadora.idCalculdora)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Calculadora.idCalculdora)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.listaFrecuencias.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.listaFrecuencias.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.kilometraje)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.kilometraje)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cantidadVeces)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cantidadVeces)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.listaMedios.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.listaMedios.nombre)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

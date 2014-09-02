@@ -1,0 +1,61 @@
+﻿@model CO2Neutral_MVC.Models.Calculadora
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Calculadora</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Usuario.contrasenna)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuario.contrasenna)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCalculdora)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCalculdora)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoTransporte)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoTransporte)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoElectricidad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoElectricidad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoReciclaje)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoReciclaje)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.resultadoGas)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.resultadoGas)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

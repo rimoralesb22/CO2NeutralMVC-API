@@ -1,0 +1,36 @@
+﻿@model CO2Neutral_MVC.Models.listaFrecuencias
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>listaFrecuencias</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idFrecuencias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idFrecuencias)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.valor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.valor)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.idFrecuencias}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

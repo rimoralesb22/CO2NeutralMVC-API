@@ -1,0 +1,36 @@
+﻿@model CO2Neutral_MVC.Models.listaMedios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>listaMedios</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idMedios)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idMedios)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.valor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.valor)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.idMedios }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
